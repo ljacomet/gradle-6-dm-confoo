@@ -1,0 +1,16 @@
+[background-color="#01303a"]
+== Dependency conflict detection with capabilities
+
+=== Capabilities as feature declarations
+
+* Software components can provide multiple capabilities.
+* A dependency graph can only have one module that provides a given capability
+* Ideally, you would be able to express dependency on a capability instead of a concrete module
+** "I need a logging implementation" instead of "I need `slf4j-simple` "
+
+=== Addressing the logging ecosystem challenge
+
+image::logging-landscape-conflicts.png[height=450]
+
+* Register capabilities to _detect_ the conflicts
+* Offered by the https://github.com/ljacomet/logging-capabilities[`dev.jacomet.logging-capabilities` plugin]

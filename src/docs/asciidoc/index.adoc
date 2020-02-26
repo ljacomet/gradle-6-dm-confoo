@@ -1,0 +1,109 @@
+:revnumber: {project-version}
+:example-caption!:
+ifndef::imagesdir[:imagesdir: images]
+ifndef::sourcedir[:sourcedir: ../java]
+:navigation:
+:menu:
+:status:
+:transition: none
+:title-slide-background-image: title.png
+:title-slide-transition: zoom
+:title-slide-transition-speed: fast
+:icons: font
+:revealjs_center: false
+:highlightjsdir: highlight
+
+= : Next generation dependency management with Gradle
+
++++<h3>+++
++++<div style="font-size: 0.5em; padding-top:140px">+++
+Louis Jacomet - Gradle Inc.
++++</div>+++
++++</h3>+++
+
+== Who am I?
+
+image::blog_head_round.png[height=250,width=250]
+
+icon:github[] ljacomet +++&nbsp;+++ icon:twitter[] @ljacomet
+
+* Lead software engineer @ Gradle
+** Part of the JVM ecosystem team
+* Previously worked for Terracotta on Ehcache
+* Started his career as a contractor
+
+== Agenda
+
+. API and implementation separation
+. Dependency constraints and platforms
+. Publishing and the Gradle Module Metadata format
+. Test fixtures and feature variants
+. Dependency conflict detection with capabilities
+. Enrich existing Metadata with Rules
+
+== Today's Demo Project
+
+https://github.com/ljacomet/gradle-6-dm-confoo/tree/master/demos/dm-gradle-6[github.com/ljacomet/gradle-6-dm-confoo/tree/master/demos/dm-gradle-6]
+
+[plantuml, overview, png, width=600, height=0%]
+....
+scale 1600 width
+skinparam class {
+	ArrowColor Black
+}
+
+rectangle "App" <<Application>> {
+}
+
+rectangle "HelloJavaService" <<Component>> {
+}
+
+rectangle "Data" <<Component>> {
+}
+
+rectangle "Platform" <<Component>> #lightyellow {
+}
+
+rectangle "Guava" <<Component>> #lightgrey {
+}
+
+rectangle "Junit5" <<Component>> #lightgrey {
+}
+
+App --> HelloJavaService
+HelloJavaService --> Data
+
+HelloJavaService --> Guava
+HelloJavaService --> Junit5
+
+App -.-> Platform
+HelloJavaService -.-> Platform
+Data -.-> Platform
+....
+
+include::chapters/api-implementation-separation.adoc[]
+
+include::chapters/constraints-and-platforms.adoc[]
+
+include::chapters/gradle-module-metadata.adoc[]
+
+include::chapters/test-fixtures-and-variants.adoc[]
+
+include::chapters/conflict-detection.adoc[]
+
+include::chapters/metadata-rules.adoc[]
+
+== More Resources
+
+* https://docs.gradle.org/6.0.1/release-notes.html[Gradle 6 Release Notes]
+* https://docs.gradle.org/6.0.1/userguide/userguide.html[Gradle User Manual] with more content on https://docs.gradle.org/6.0.1/userguide/core_dependency_management.html[dependency management]
+* Recorded Dependency Management webcasts
+** https://gradle.com/blog/dependency-management-fundamentals/[Dependency Management Fundamentals]
+** https://gradle.com/blog/dependency-management-part-2-handling-conflicts/[Handling Conflicts and Customizing Resolution]
+** https://gradle.com/blog/dependency-management-with-gradle-part-3-publishing-and-release-strategies/[Publishing and Release Strategies]
+* Regular online intro and advanced trainings  - https://gradle.com/training/[gradle.com/training]
+
+[%notitle]
+== Thank you
+
+image::thank-you.png[background, size=cover]
